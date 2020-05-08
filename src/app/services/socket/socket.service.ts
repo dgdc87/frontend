@@ -3,7 +3,7 @@ import io from 'socket.io-client';
 import { AuthenticationService } from '@services/authentication/authentication.service';
 import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
-import { ConfirmationDialogComponent } from '@components/common/confirmation-dialog/confirmation-dialog.component';
+import { DialogComponent } from '@dgdc87/dialog';
 import { User } from '@app/class/User';
 
 @Injectable({
@@ -36,7 +36,7 @@ export class SocketService {
 
   setNotificationsAndServiceWorker = () => {
     if (!('Notification' in window)) {
-      this.dialog.open(ConfirmationDialogComponent, {
+      this.dialog.open(DialogComponent, {
         width: '350px',
         data: {
           message:
@@ -47,7 +47,7 @@ export class SocketService {
     } else if (Notification.permission === 'granted') {
       this.setServiceWorker();
     } else if (Notification.permission !== 'denied') {
-      const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      const dialogRef = this.dialog.open(DialogComponent, {
         width: '90%',
         data: {
           message:
@@ -84,7 +84,7 @@ export class SocketService {
           this.generateSWSubscription();
         });
     } else {
-      this.dialog.open(ConfirmationDialogComponent, {
+      this.dialog.open(DialogComponent, {
         width: '350px',
         data: {
           message:

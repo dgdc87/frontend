@@ -22,7 +22,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from '@components/common/header/header.component';
 import { FooterComponent } from '@components/common/footer/footer.component';
-import { ConfirmationDialogComponent } from '@components/common/confirmation-dialog/confirmation-dialog.component';
+import { DialogComponent } from '@dgdc87/dialog';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AboutComponent } from '@components/about/about.component';
 import { LoginComponent } from '@components/access/login/login.component';
@@ -44,7 +44,7 @@ import { NgxLoadingModule, ngxLoadingAnimationTypes } from 'ngx-loading';
     PerfilComponent,
     HeaderComponent,
     FooterComponent,
-    ConfirmationDialogComponent,
+    DialogComponent,
     AboutComponent,
     LoginComponent,
     LogoutComponent,

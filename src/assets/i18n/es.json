@@ -44,7 +44,7 @@
   },
   "alerts": {
     "notifications-not-supported": "Este navegador no soporta las notificaciones, se recomienda el uso de Chrome.",
-    "ask-for-notifications-permission": "Todavía no ha concedido permisos para enviarle notificaciones. Estas le alertarán de posibles alar ¿Desea permitir las notificaciones?",
+    "ask-for-notifications-permission": "Todavía no ha concedido permisos para enviarle notificaciones. ¿Desea permitirlas?",
     "service-wrokers-not-supported": "Este navegador no soporta las notificaciones si cierra la pestaña o el navegador, por lo que se recomienda no cerrar esta ventana."
   }
 }
