@@ -4,14 +4,16 @@ import { AuthenticationService } from '@services/authentication/authentication.s
 import { Subscription } from 'rxjs';
 import { DialogService } from '@dgdc87/dialog';
 import { User } from '@app/class/User';
+import { environment } from '@env/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SocketService {
+  private SOCKET_PORT = environment.socket_port;
+  private SOCKET_URL = environment.socket_url;
   private socket: any;
   private socketsArray: Array<string>;
-  private SOCKET_PORT = 8000;
   private PORT = null;
   private URL: string;
   private serviceWorkerUbication = '/assets/ext/serviceWorker.js';
@@ -22,13 +24,7 @@ export class SocketService {
   public resetDataSubscription: Subscription;
 
   constructor(public authService: AuthenticationService, private dialogService: DialogService) {
-    // TODO: variables de entorno
-    const aOrigin = window.location.origin.split(':');
-    this.URL = aOrigin[0] + ':' + aOrigin[1];
-    if (aOrigin[3]) {
-      this.PORT = aOrigin[3];
-    }
-    // this.socket = io.connect(`${this.URL}:${this.SOCKET_PORT}`);
+    // this.socket = io.connect(`${this.SOCKET_URL}:${this.SOCKET_PORT}`);
     // this.setSocketsActions();
     // this.setNotificationsAndServiceWorker();
   }

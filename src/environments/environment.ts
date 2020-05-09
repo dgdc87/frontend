@@ -3,7 +3,11 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  socket_port: 9001,
+  socket_url: 'http://localhost',
+  back_port: 9001,
+  back_url: 'http://localhost'
 };
 
 /*

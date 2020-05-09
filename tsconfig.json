@@ -15,7 +15,7 @@
       "@class/*": ["src/app/class/*"],
       "@components/*": ["src/app/components/*"],
       "@services/*": ["src/app/services/*"],
-      "@env/*": ["src/app/environments/*"],
+      "@env/*": ["src/environments/*"],
       "@interceptors/*": ["src/app/interceptors/*"]
     },
     "emitDecoratorMetadata": true,
