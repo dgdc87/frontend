@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import io from 'socket.io-client';
 import { AuthenticationService } from '@services/authentication/authentication.service';
 import { Subscription } from 'rxjs';
-import { MatDialog } from '@angular/material/dialog';
-import { DialogComponent } from '@dgdc87/dialog';
+import { DialogService } from '@dgdc87/dialog';
 import { User } from '@app/class/User';
 
 @Injectable({
@@ -22,7 +21,7 @@ export class SocketService {
   public enoughDataSubscription: Subscription;
   public resetDataSubscription: Subscription;
 
-  constructor(public authService: AuthenticationService, public dialog: MatDialog) {
+  constructor(public authService: AuthenticationService, private dialogService: DialogService) {
     // TODO: variables de entorno
     const aOrigin = window.location.origin.split(':');
     this.URL = aOrigin[0] + ':' + aOrigin[1];
@@ -36,26 +35,11 @@ export class SocketService {
 
   setNotificationsAndServiceWorker = () => {
     if (!('Notification' in window)) {
-      this.dialog.open(DialogComponent, {
-        width: '350px',
-        data: {
-          message:
-            'alerts.notifications-not-supported',
-          type: 'simple'
-        }
-      });
+      this.dialogService.openSimpleDialog('350px', ['alerts.notifications-not-supported']);
     } else if (Notification.permission === 'granted') {
       this.setServiceWorker();
     } else if (Notification.permission !== 'denied') {
-      const dialogRef = this.dialog.open(DialogComponent, {
-        width: '90%',
-        data: {
-          message:
-            'alerts.ask-for-notifications-permission',
-          type: 'confirmation'
-        }
-      });
-      dialogRef.afterClosed().subscribe(result => {
+      this.dialogService.openConfirmationDialog('90%', ['alerts.ask-for-notifications-permission']).then(result => {
         if (result) {
           Notification.requestPermission( (permission) => {
             if (permission === 'granted') {
