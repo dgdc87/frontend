@@ -68,14 +68,7 @@ export class SocketService {
           this.generateSWSubscription();
         });
     } else {
-      this.dialog.open(DialogComponent, {
-        width: '350px',
-        data: {
-          message:
-            'alerts.service-wrokers-not-supported',
-          type: 'simple'
-        }
-      });
+      this.dialogService.openSimpleDialog('350px', ['alerts.service-wrokers-not-supported']);
     }
   }
 
@@ -131,17 +124,17 @@ export class SocketService {
     this.socket.on('refresh-user-data', data => {
       this.authService.setUserData( new User(data));
     });
-  };
+  }
 
   /* Emitters */
   emitConnectUser = () => {
     const data: User = this.authService.getData();
     this.socket.emit('connect-user', data.getObject());
-  };
+  }
   emitSetUser = () => {
     this.socket.emit('set-user-data', this.authService.getData().getObject());
-  };
+  }
   emitDeleteUser = () => {
     this.socket.emit('delete-user', this.authService.getData().getObject());
-  };
+  }
 }
