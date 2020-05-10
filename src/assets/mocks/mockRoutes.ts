@@ -1,4 +1,5 @@
+// Uncomment lines in mockRoutes constant to use mock
 export const mockRoutes = {
-    '/login': '/assets/mocks/access/userData.json',
-    '/registration': '/assets/mocks/access/userData.json'
+    // '/user/login': '/assets/mocks/access/userData.json',
+    // '/user/registration': '/assets/mocks/access/userData.json'
 }

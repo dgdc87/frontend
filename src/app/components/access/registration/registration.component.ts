@@ -20,9 +20,10 @@ export class RegistrationComponent implements OnInit {
 
   matcher = new MyErrorStateMatcher();
   formData = {
-    surname: new FormControl('', [Validators.required, Validators.minLength(2)]),
+    username: new FormControl('', [Validators.required, Validators.minLength(2)]),
+    firstname: new FormControl('', [Validators.required, Validators.minLength(2)]),
     lastname: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    login: new FormControl('', [Validators.required, Validators.minLength(4)]),
+    email: new FormControl('', [Validators.email, Validators.required, Validators.minLength(4)]),
     password: new FormControl('', [Validators.required,  Validators.minLength(6)]),
     rpassword: new FormControl('', [Validators.required,  Validators.minLength(6)])
   };
@@ -62,11 +63,12 @@ export class RegistrationComponent implements OnInit {
   registerUser = () => {
     this.globalService.setLoading(true);
     const data = {
-      surname: this.formData.surname.value,
-      lastname: this.formData.lastname.value,
-      login: this.formData.login.value
+      username: this.formData.username.value,
+      firstname: this.formData.firstname.value,
+      email: this.formData.email.value,
+      lastname: this.formData.lastname.value
     };
-    this.authService.registerUser(new User(data), this.formData.password).then((response) => {
+    this.authService.registerUser(new User(data), this.formData.password.value).then((response) => {
       console.log(response);
       this.globalService.setLoading(false);
       if (response && response.getId()){

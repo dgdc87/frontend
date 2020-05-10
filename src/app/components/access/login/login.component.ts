@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
 
   matcher = new MyErrorStateMatcher();
   formData = {
-    login: new FormControl('', [Validators.required, Validators.minLength(2)]),
+    username: new FormControl('', [Validators.required, Validators.minLength(2)]),
     password: new FormControl('', [Validators.required, Validators.minLength(6)])
   };
 
@@ -33,17 +33,20 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  disableLogin = () => !this.formData.login.valid || !this.formData.password.valid;
+  disableLogin = () => !this.formData.username.valid || !this.formData.password.valid;
 
   login() {
     this.globalService.setLoading(true);
-    this.authService.login(this.formData.login.value, this.formData.password.value).then( result => {
+    this.authService.login(this.formData.username.value, this.formData.password.value).then( result => {
       this.globalService.setLoading(false);
       if (result && result.getId()){
          this.router.navigate([`/home`]);
       }
     }).catch(error => {
+      this.globalService.setLoading(false);
       console.log(error);
+      const messages = error && error.error && error.error.error ? [error.error.error] : ['erros.unexpected-error'];
+      this.globalService.dialogService.openSimpleDialog('auto', messages);
     });
   }
 

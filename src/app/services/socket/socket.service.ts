@@ -24,8 +24,8 @@ export class SocketService {
   public resetDataSubscription: Subscription;
 
   constructor(public authService: AuthenticationService, private dialogService: DialogService) {
-    // this.socket = io.connect(`${this.SOCKET_URL}:${this.SOCKET_PORT}`);
-    // this.setSocketsActions();
+    this.socket = io.connect(`${this.SOCKET_URL}:${this.SOCKET_PORT}`);
+    this.setSocketsActions();
     // this.setNotificationsAndServiceWorker();
   }
 
@@ -113,12 +113,8 @@ export class SocketService {
 
   /* Sockets actions */
   setSocketsActions = () => {
-    this.socket.on('users-connected', num => {
-      //
-    });
-
-    this.socket.on('refresh-user-data', data => {
-      this.authService.setUserData( new User(data));
+    this.socket.on('user-connected', data => {
+      console.log(`User connected: ${data}`);
     });
   }
 

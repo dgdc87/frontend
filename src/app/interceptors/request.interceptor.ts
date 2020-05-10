@@ -29,7 +29,7 @@ export class RequestInterceptor implements HttpInterceptor {
     if(token && token !== 'undefined'){
       authReq = request.clone({
         headers: request.headers
-          .set('Authorization', 'Bearer ' + token)
+          .set('Token', token)
       });
     }else{
       authReq = request.clone({

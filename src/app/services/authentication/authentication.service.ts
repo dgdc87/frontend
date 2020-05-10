@@ -55,12 +55,12 @@ export class AuthenticationService {
     return this.userData;
   }
 
-  public getRole(): string {
-    return this.userData.getRole();
+  public getRole(): number {
+    return this.userData.getId_role();
   }
 
   public hasPermiso(role): boolean {
-    return this.userData.getRole() === role;
+    return this.userData.getId_role() === role;
   }
 
   public setUserData = (data: User, token?) => {
@@ -77,10 +77,10 @@ export class AuthenticationService {
 
   public getToken = () => this.token;
 
-  public login(login: string, password: string): Promise<User>{
-    const url = '/login';
+  public login(username: string, password: string): Promise<User>{
+    const url = '/user/login';
     const promise = new Promise<User>((resolve, reject) => {
-      this.http.post<any>(url, {login: login, pass: cryptoJS.MD5(password).toString()}).subscribe(
+      this.http.post<any>(url, {username: username, password: cryptoJS.MD5(password).toString()}).subscribe(
         (response) => {
             // Se resuelve la promesa
             if (response.user && response.token){
@@ -100,7 +100,7 @@ export class AuthenticationService {
   public logout = () => this.resetData();
 
   public registerUser = ( user: User, password) => {
-    const url = '/registration';
+    const url = '/user/signin';
     const data = { ...user.getObject(), password: cryptoJS.MD5(password).toString() };
     console.log(data);
     const promise = new Promise<User>((resolve, reject) => {
