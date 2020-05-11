@@ -1,6 +1,8 @@
 {
   "name": "angular-app",
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "author": "Diego González del Campo",
+  "license": "MIT",
   "scripts": {
     "ng": "ng",
     "start": "ng serve --port 8000",
@@ -21,7 +23,7 @@
     "@angular/platform-browser": "~9.1.0",
     "@angular/platform-browser-dynamic": "~9.1.0",
     "@angular/router": "~9.1.0",
-    "@dgdc87/dialog": "0.0.8",
+    "@dgdc87/dialog": "^1.0.5",
     "@ngx-translate/core": "^12.1.2",
     "@ngx-translate/http-loader": "^4.0.0",
     "animate.css": "^3.6.1",
